@@ -1,0 +1,28 @@
+{
+  "name": "presence",
+  "version": "0.0.1",
+  "description": "Talk with Claude Code through the Avatar app: replies spoken as they are written by a face with lip sync, your voice into the prompt, and a pane with the conversation and its controls.",
+  "author": { "name": "Sandip Chitale", "email": "sandipchitale@gmail.com" },
+  "license": "MIT",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "sendPhrase": {
+      "type": "string",
+      "title": "Send phrase",
+      "description": "Said on its own, sends the prompt box.",
+      "default": "send it"
+    },
+    "linkPath": {
+      "type": "string",
+      "title": "avatar-link path",
+      "description": "The Avatar app's avatar-link command.",
+      "default": "/Applications/Avatar.app/Contents/MacOS/avatar-link"
+    },
+    "socket": {
+      "type": "string",
+      "title": "Avatar socket",
+      "description": "Avatar's command socket; empty for ~/Library/Application Support/Avatar/avatar.sock.",
+      "default": ""
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "presence",
+  "owner": { "name": "Sandip Chitale" },
+  "description": "Presence: talk with Claude Code through the Avatar app.",
+  "plugins": [{ "name": "presence", "source": "./", "description": "Talk with Claude Code through the Avatar app." }]
+}
