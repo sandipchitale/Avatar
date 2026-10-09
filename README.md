@@ -12,6 +12,8 @@ session.
 
 ![Claude Desktop Avatar](screenshots/Claude-Desktop-Avatar.png)
 
+## Features
+
 - **Replies spoken as they are written**, one sentence at a time, by a face that lip-syncs, raises its
   eyebrows on stressed words and shows moods. A man and a woman, each with any installed English voice
   of their gender.
