@@ -1,0 +1,6 @@
+{
+  "name": "avatar-marketplace",
+  "owner": { "name": "Sandip Chitale" },
+  "description": "Avatar: talk with Claude Code through the Avatar app.",
+  "plugins": [{ "name": "avatar", "source": "./", "description": "Talk with Claude Code through the Avatar app." }]
+}
