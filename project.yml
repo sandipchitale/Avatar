@@ -1,0 +1,72 @@
+name: Avatar
+options:
+  bundleIdPrefix: com.sandipchitale
+  deploymentTarget:
+    macOS: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    MARKETING_VERSION: "0.0.1"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  # The avatar: a face window that speaks and listens, driven by the Presence mod in Claude Code.
+  Avatar:
+    type: application
+    platform: macOS
+    sources:
+      - path: Avatar
+    dependencies:
+      # The mod's session handle, copied next to the app executable (Contents/MacOS) and signed.
+      - target: avatar-link
+        embed: true
+        codeSign: true
+        copy:
+          destination: executables
+    scheme:
+      testTargets: [AvatarTests]
+    entitlements:
+      path: Avatar/Avatar.entitlements
+      properties:
+        com.apple.security.device.audio-input: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sandipchitale.Avatar
+        PRODUCT_NAME: Avatar
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Avatar
+        # A menu bar app: no Dock icon or app menu.
+        INFOPLIST_KEY_LSUIElement: YES
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "Avatar listens so you can talk to Claude Code instead of typing."
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "Avatar turns your speech into text on this Mac, for Claude Code's prompt."
+        ENABLE_APP_SANDBOX: NO
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "-"
+  # `avatar-link attach <session>`: a Claude Code session's handle on the avatar, printing its events.
+  avatar-link:
+    type: tool
+    platform: macOS
+    sources:
+      - path: CLI/avatar-link
+    settings:
+      base:
+        PRODUCT_NAME: avatar-link
+        PRODUCT_BUNDLE_IDENTIFIER: com.sandipchitale.Avatar.avatar-link
+        SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "-"
+        SKIP_INSTALL: YES
+  AvatarTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources: [AvatarTests]
+    dependencies:
+      - target: Avatar
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sandipchitale.AvatarTests
+        GENERATE_INFOPLIST_FILE: YES
